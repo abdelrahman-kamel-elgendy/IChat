@@ -6,14 +6,6 @@ const nameInput = document.getElementById('name-input')
 const messageForm = document.getElementById('message-form')
 const messageInput = document.getElementById('message-input')
 
-messageForm.addEventListener('submit', (e) => {
-    e.preventDefault()
-    sendMessage()
-})
-
-socket.on('connectedUsers', (data) => {
-    clientsTotal.innerText = `Total connected users: ${data}`
-})
 
 function sendMessage() {
     if (!messageInput.value.trim()) return
@@ -28,10 +20,6 @@ function sendMessage() {
     appendMessage(true, message)
     messageInput.value = ''
 }
-
-socket.on('message', (message) => {
-    appendMessage(false, message)
-})
 
 function appendMessage(isOwnMessage, message) {
     const messageElement = `
@@ -53,6 +41,10 @@ function scrollToBottom() {
     messageContainer.scrollTo(0, messageContainer.scrollHeight)
 }
 
+messageForm.addEventListener('submit', (e) => {
+    e.preventDefault()
+    sendMessage()
+})
 messageInput.addEventListener('focus', (e) => {
     socket.emit('typing', { feedback: `${nameInput.value} is typing...` })
 })
@@ -61,6 +53,14 @@ messageInput.addEventListener('keypress', (e) => {
 })
 messageInput.addEventListener('blur', (e) => {
     socket.emit('typing', { feedback: '' })
+})
+
+socket.on('connectedUsers', (data) => {
+    clientsTotal.innerText = `Total connected users: ${data}`
+})
+
+socket.on('message', (message) => {
+    appendMessage(false, message)
 })
 
 socket.on('typing', (data) => {

@@ -24,10 +24,12 @@ function onConnected(socket) {
         socketsConnected.delete(socket.id)
         io.emit('connectedUsers', socketsConnected.size)
     })
+
     socket.on('sendMessage', (message) => {
         console.log('Message received:', message)
         socket.broadcast.emit('message', message)
     })
+    
     socket.on('typing', (data) => {
         socket.broadcast.emit('typing', data)
     })
