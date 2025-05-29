@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Chat App</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <h1 class="title">IChat 💬</h1>
+        <div class="main">
+            <div class="name-container">
+                <span class="user-icon">
+                    <i class="fa-solid fa-user"></i>
+                </span>
+                <div class="name-details">
+                    <input
+                        type="text"
+                        id="name-input"
+                        class="name-input"
+                        value="Anonymous"
+                        maxlength="20"
+                    >
+                    <p class="feedback" id="typing-feedback"></p>
+                </div>
+            </div>
+            <ul class="message-continer" id="message-container"></ul>
+            <form class="message-form" id="message-form">
+                <input
+                    type="text"
+                    name="message"
+                    id="message-input"
+                    class="message-input"
+                    placeholder="Send a message..."
+                >
+                <button type="submit" class="send-button">
+                    Send
+                    <span>
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </span>
+                </button>
+            </form>
+        </div>
+        <h3 class="clients-total" id="clients-total">Total clients: 2</h3>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.28.0/moment.min.js" integrity="sha512-Q1f3TS3vSt1jQ8AwP2OuenztnLU6LwxgyyYOG1jgMW/cbEMHps/3wjvnl1P3WTrF3chJUWEoxDUEjMxDV8pujg==" crossorigin="anonymous"></script>
+        <script src="main.js"></script>
+    </body>
+</html>
